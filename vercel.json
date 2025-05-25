@@ -1,0 +1,10 @@
+
+{
+  "functions": {
+    "api/**/*.cjs": { 
+      "runtime": "nodejs20.x" 
+    }
+  },
+  "installCommand": "npm install", 
+  "buildCommand": "npm run build" 
+}
