@@ -1,8 +1,11 @@
+// src/types.ts
+
 export interface Agent {
   id: string;
   name: string;
-  audioUrl: string;
-  textResponse: string;
+  textResponse: string | null; // Текстовый ответ агента (может быть null до получения)
+  audioUrl: string | null;     // URL для аудио ответа (может быть null до получения)
+  isSsmlResponse: boolean;     // <--- ДОБАВЬТЕ ЭТУ СТРОКУ (или убедитесь, что она есть)
 }
 
 export interface Case {
@@ -10,7 +13,6 @@ export interface Case {
   title: string;
   description: string;
   questions: string[];
-  customQuestions?: string[];
 }
 
 export interface GameData {
@@ -18,12 +20,19 @@ export interface GameData {
   agents: Agent[];
 }
 
-export interface GuessPayload {
-  agentChosen: string;
-}
-
 export interface ApiResponse<T> {
   data?: T;
   error?: string;
   loading: boolean;
+}
+
+export interface AccusationResult {
+  result: string;
+  is_correct: boolean;
+  actual_liar: string;
+}
+
+export interface AskQuestionApiResponse {
+  response_text: string;
+  is_ssml: boolean;
 }
