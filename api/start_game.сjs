@@ -5,11 +5,12 @@ const { VercelRequest, VercelResponse } = require('@vercel/node');
 
 // Используем module.exports вместо export default для CommonJS
 module.exports = async function handler(request, response) {
+  // Убедимся, что это только GET запрос
   if (request.method !== 'GET') {
     return response.status(405).send('Method Not Allowed');
   }
 
-  // Ваши данные и логика остаются такими же
+  // Описание дела
   const caseDescription = 'Ценный артект исчез из музея. Три охранника дежурили в ту ночь, но их показания не совпадают. Один из них лжет.';
   const suspects = [
     { id: 'agent-a', name: 'Анна' },
@@ -17,13 +18,15 @@ module.exports = async function handler(request, response) {
     { id: 'agent-c', name: 'Виктор' }
   ];
 
+  // Случайно выбираем лжеца
   const liarId = suspects[Math.floor(Math.random() * suspects.length)].id;
 
   try {
+    // Отправляем данные клиенту
     response.status(200).json({
       case_description: caseDescription,
       suspects: suspects.map(s => ({ id: s.id, name: s.name })),
-      liar_id_for_this_game_only_for_dev: liarId,
+      liar_id_for_this_game_only_for_dev: liarId, // Эта строка только для разработки, ее можно удалить в продакшене
       questions: [
         'Где вы были в 22:00?',
         'Видели ли вы кого-то подозрительного?',
@@ -34,4 +37,4 @@ module.exports = async function handler(request, response) {
     console.error("Error in start_game API:", error);
     response.status(500).json({ error: "Failed to start game due to an internal error." });
   }
-}; // Обратите внимание на точку с запятой после закрывающей фигурной скобки функции
+};
