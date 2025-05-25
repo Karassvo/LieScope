@@ -19,5 +19,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts", "api"] // <--- ДОБАВЛЕНО "api"
+  "include": ["vite.config.ts"] // <--- ЭТА СТРОКА ДОЛЖНА ПРИСУТСТВОВАТЬ!
 }
