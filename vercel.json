@@ -2,7 +2,7 @@
 {
   "functions": {
     "api/**/*.cjs": {
-      "runtime": "node@20.x" 
+      "runtime": "nodejs18.x" 
     }
   },
   "installCommand": "npm install",
